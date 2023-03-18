@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://kendo.cdn.telerik.com/themes/6.2.0/default/default-main.css" rel="stylesheet" />
+  <script src="js/jquery.min.js"></script>
+  <script src="js/kendo.all.min.js"></script>
+  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2023.3.315/styles/kendo.default.min.css" />
+  <script src="https://kendo.cdn.telerik.com/2023.3.315/js/kendo.all.min.js"></script>
+  <script src="https://kendo.cdn.telerik.com/2023.1.314/mjs/kendo.grid.js" type="module"></script>
+  <script src="https://kendo.cdn.telerik.com/2023.1.314/mjs/kendo.all.js"></script>
+
+  <title>Document</title>
+</head>
+<body>
+  <form class="k-form" #userForm="ngForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <legend>Personal information</legend>
+      <label class="k-form-field">
+        <span>
+          Name <span class="k-required">*</span>
+        </span>
+        <input  class="k-textbox" placeholder="Juan Perez"
+        [(ngModel)]="formModel.name" name="name"
+        #name="ngModel"
+        required #spy />
+        <div class="validationError"
+        [hidden]="name.valid || name.pristine">Please provide your full name</div>
+      </label>
+      <label class="k-form-field">
+        <span>
+          Gender <span class="k-field-info">optional</span>
+        </span>
+          <input class="k-radio" type="radio" name="gender" id="female"
+            value= "female"/>
+            <label class="k-radio-label" for="female">Female</label>
+            <input class="k-radio" type="radio" name="gender" id="male"
+              value="male"/>
+              <label class="k-radio-label" for="male">Male</label>
+
+      </label>
+      <label class="k-form-field">
+        <span>Date of Birth</span>
+        <kendo-datepicker></kendo-datepicker>
+      </label>
+      <label class="k-form-field">
+        <span>
+          E-mail <span class="k-required">*</span>
+        </span>
+        <input id="emailInput" type="email" placeholder="example@mail.com"
+        class="k-textbox"
+        [(ngModel)]="formModel.email" name="email"
+        #email="ngModel"
+        required />
+        <div class="validationError"
+        [hidden]="email.valid || email.pristine">Please provide a valid email</div>
+        <span id="emailError" style="color: red;"></span>
+      </label>
+    </fieldset>
+    <fieldset>
+      <legend>Address</legend>
+      <label class="k-form-field">
+        <span>
+          Street Address <span class="k-required">*</span>
+        </span>
+        <input class="k-textbox" placeholder="Test St"
+        [(ngModel)]="formModel.address" name="address"
+        #address="ngModel" required />
+        <div class="validationError"
+        [hidden]="address.valid || address.pristine">Please provide your address</div>
+      </label>
+      <label class="k-form-field">
+        <span>
+          Zipcode<span class="k-required">*</span>
+        </span>
+        <input class="k-textbox" placeholder="12345"
+        [(ngModel)]="formModel.zipcode" name="zipcode"
+        #zipcode="ngModel" required />
+        <div class="validationError"
+        [hidden]="zipcode.valid || zipcode.pristine">Please provide your zicode</div>
+      </label>
+      <label class="k-form-field">
+        <input type="checkbox" id="billingCheck" class="k-checkbox" checked="checked" />
+        <label class="k-checkbox-label" for="billingCheck">Billing Adress is same as Shipping</label>
+      </label>
+    </fieldset>
+    <fieldset>
+      <legend>Misc</legend>
+      <label class="k-form-field">
+        <span>Multiselect Kendo</span>
+        <kendo-multiselect
+        [data]="items"
+        [textField]="'text'"
+        [valueField]="'value'"
+        [(ngModel)]="selectedItems"
+        name="myMultiselectControl"></kendo-multiselect>
+      </label>
+      <label class="k-form-field">
+        <span>
+          Sing me up for the newsletter! <span class="k-field-info">optional</span>
+        </span>
+        <kendo-switch></kendo-switch>
+      </label>
+    </fieldset>
+
+    <button type="submit" name="submit" kendoButton
+      [primary]="true"
+      [disabled]="!userForm.form.valid">Submit</button>
+  </form>
+
+  <kendo-button (click)="redirectToGrid()">Ir al Grid</kendo-button>
+  <router-outlet></router-outlet>
+
+  <kendo-map [center]="[45, -60]">
+    <kendo-map-layers>
+        <kendo-map-shape-layer
+            [data]="[{ type: 'Polygon', coordinates: [[[-90, 30], [-60, 60], [-30, 30], [-90, 30]]] }]">
+        </kendo-map-shape-layer>
+    </kendo-map-layers>
+</kendo-map>
+
+<input id="captcha" name="captcha" placeholder="Enter captcha" />
+
+<script>
+    $("#captcha").kendoCaptcha({
+        handler: "./reset",
+        audioHandler: function (args) {
+            args.success("./audio?captchaId=" + args.data.captchaId);
+        },
+        validationHandler: "./validate",
+        error: function (data) {
+            console.log(data);
+        }
+    })
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Incluir las librerías de Kendo UI -->
+  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2023.3.315/styles/kendo.default.min.css" />
+  <script src="https://kendo.cdn.telerik.com/2023.3.315/js/kendo.all.min.js"></script>
+  <script src="https://kendo.cdn.telerik.com/2023.1.314/mjs/kendo.grid.js" type="module"></script>
+  <script src="https://kendo.cdn.telerik.com/2023.1.314/mjs/kendo.all.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <h1>ESTE ES EL GRID</h1>
+  <table id="mi-grid"></table>
+
+
+  <script>
+    $(document).ready(function() {
+        $("#mi-grid").kendoGrid({
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "./services/select.php",
+                        dataType: "json"
+                    }
+                },
+                schema: {
+                    model: {
+                        fields: {
+                          campo1: { type: "string" },
+                          campo2: { type: "string" },
+                          campo3: { type: "string" },
+                          campo4: { type: "string" },
+                          campo5: { type: "string" }
+                        }
+                    }
+                },
+                pageSize: 20 // Número de registros por página
+            },
+            columns: [
+              {
+                  field: "campo1",
+                  title: "campo1",
+                  width: 100
+              },
+              {
+                  field: "campo2",
+                  title: "campo2"
+              },
+              {
+                  field: "campo3",
+                  title: "campo3"
+              },
+              {
+                  field: "campo4",
+                  title: "campo5"
+              },
+              {
+                  field: "campo5",
+                  title: "campo5"
+              }
+
+            ],
+            pageable: true // Habilitar la paginación
+        });
+    });
+    </script>
+
+</body>
+</html>

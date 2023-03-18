@@ -1,0 +1,10 @@
+@import "~@progress/kendo-theme-default/dist/all.css";
+
+.k-radio {
+  width: 13px;
+  height: 13px ;
+}
+
+.validationError {
+  color: red;
+}

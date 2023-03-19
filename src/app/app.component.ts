@@ -26,6 +26,7 @@ import { Router } from '@angular/router'
       </kendo-map-layers>
     </kendo-map>
   `,
+
   styleUrls: ['./app.component.css']
 })
 
@@ -75,29 +76,10 @@ tileSubdomains = ["a", "b", "c"];
 
   center = [30.2675, -97.7409];
 
-// ----------------------------------------------------------------------------------------------------//
+// --------------------------GRID------------------------------------------------------------------//
 
   redirectToGrid() {
     this.router.navigate(['/grid']);
   }
 }
-
-
-
-
-
-
-  //   name: string = '';
-
-  // constructor(private http: HttpClient) {}
-
-  // onSubmit() {
-  //   const formData = new FormData();
-  //   formData.append('name', this.name);
-
-  //   this.http.post('"../app/services/insert.php', formData).subscribe(response => {
-  //     console.log(response);
-  //   });
-  // }
-
 

@@ -15,9 +15,8 @@ import { PopupModule } from '@progress/kendo-angular-popup';
 import { CommonModule } from '@angular/common';
 import { GridComponent } from './grid/grid.component';
 import { MapModule } from '@progress/kendo-angular-map';
-
-
-// import { CaptchaModule } from '@progress/kendo-angular-captcha';
+import { UploadsModule } from '@progress/kendo-angular-upload';
+// import { CaptchaModule } from '@progress/kendo-angular-captcha'; <--- 404 ERROR
 
 
 @NgModule({
@@ -39,6 +38,7 @@ import { MapModule } from '@progress/kendo-angular-map';
     PopupModule,
     CommonModule,
     MapModule,
+    UploadsModule,
 
   ],
   providers: [],

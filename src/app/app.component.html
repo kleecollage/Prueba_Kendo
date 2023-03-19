@@ -105,6 +105,10 @@
       </label>
     </fieldset>
 
+    <div>
+      <input id="captcha" name="captcha" placeholder="Enter captcha" />
+    </div>
+
     <button type="submit" name="submit" kendoButton
       [primary]="true"
       [disabled]="!userForm.form.valid">Submit</button>
@@ -112,6 +116,12 @@
 
   <kendo-button (click)="redirectToGrid()">Ir al Grid</kendo-button>
   <router-outlet></router-outlet>
+
+  <!-- <kendo-upload
+  [saveUrl]="uploadSaveUrl"
+  [removeUrl]="uploadRemoveUrl">
+  </kendo-upload> -->
+
 
   <kendo-map [center]="[45, -60]">
     <kendo-map-layers>
@@ -121,7 +131,7 @@
     </kendo-map-layers>
 </kendo-map>
 
-<input id="captcha" name="captcha" placeholder="Enter captcha" />
+
 
 <script>
     $("#captcha").kendoCaptcha({
